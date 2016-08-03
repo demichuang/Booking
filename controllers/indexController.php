@@ -41,7 +41,19 @@ class indexController extends Controller {
     //  到新增活動頁
     function goactivity() {
         $this->view("activity");
-    }   
+    }
+    
+    //  新增活動
+    function addactivity(){
+        $name=$_POST["aname"];      //  得輸入的新username
+        $max=$_POST['amaxpeople'];
+        
+        $addact=$this->model("sqlcommand");
+    	$result =$addact->addact($name,$max);
+        
+    }
+
+
 
 
 

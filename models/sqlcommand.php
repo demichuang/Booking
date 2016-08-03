@@ -29,7 +29,7 @@ class sqlcommand extends connect_db{
     	return $num;    // 回傳資料筆數
     }
     
-    function adduser($newuser,$newpassword){
+    function addact($name,$max){
         $cmd="INSERT `user`(`username`,`userpassword`)  
               VALUES('$newuser','$newpassword')";
     	$this->db->query($cmd);

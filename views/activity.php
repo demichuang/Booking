@@ -50,7 +50,7 @@
           <input type="text" placeholder="ActivityName" name="aname" required>
           <input type="text" placeholder="MaxPeople" name="amaxpeople">
           <button class="btn btn-primary" name="reset" type="reset">Clear</button>&nbsp;
-          &nbsp;<button class="btn btn-primary" name="signup" type="submit">Login</button> 
+          &nbsp;<button class="btn btn-primary" name="signup" type="submit">Add</button> 
         </form>
       </div>
     </div>

@@ -1,5 +1,4 @@
 <?php
-
 $origin = array(
     array(1, 1, 0, 0, 0, 0, 0, 0, 0, 0),
     array(1, 1, 0, 1, 1, 0, 0, 0, 0, 0),
@@ -13,6 +12,8 @@ $origin = array(
     array(1, 1, 0, 1, 1, 0, 0, 0, 0, 1)
 );
 
+echo "Origin: <br><br>";
+
 
 for ($i=0; $i<count($origin); $i++){
     for ($j=0; $j<count($origin); $j++){
@@ -21,7 +22,10 @@ for ($i=0; $i<count($origin); $i++){
     echo "<br>";
 }
 
+echo "<br><br> Max area of 1: <br><br>";
 
+$array=array();
+$array2=array();
 
 $max=0;
 
@@ -31,99 +35,55 @@ for($i=0; $i<count($origin); $i++)
     {
         if ($origin[$i][$j])
         {
-            $e = 0;
-            for($m=0; $m<count($origin)-$i; $m++)
+            if($origin[$i+1][$j] && !$array[$i+1][$j])
             {
-                for ($n=0; $n<count($origin)-$j-$e; $n++)
+                $array[$i+1][$j] = $origin[$i+1][$j];
+                $num++;
+            };
+            
+            if($origin[$i-1][$j] && !$array[$i-1][$j])
+            {
+                $array[$i-1][$j] = $origin[$i-1][$j];
+                $num++;
+            };
+            
+            if($origin[$i][$j+1] && !$array[$i][$j+1])
+            {
+                $array[$i][$j+1] = $origin[$i][$j+1];
+                $num++;
+            };
+            
+            if($origin[$i][$j-1] && !$array[$i][$j-1])
+            {
+                $array[$i][$j-1] = $origin[$i][$j-1];
+                $num++;
+            }
+            
+            if($max < $num)
+            {
+                $array2 = $array;
+                $max =$num;
+            } 
+            
+            for($row=0; $row < count($origin); $row++)
+            {
+                for($col=0; $col < count($origin[$row]); $col++)
                 {
-                    if ($origin[$m + $i][$n + $j]==0)
-                    {
-                        $e = count($origin) - $j - $n;
-                        break;
-                    }
-                    
-                    $max = $max > ($m + 1) * ($n + 1) ? $max : ($m + 1) * ($n + 1);
+                    $array[$row][$col] = 0;
                 }
             }
         }
     }
 }
 
-echo $max;
 
-/*
-$count=0;
-$max = $max > ($m + 1) * ($n + 1) ? $max : ($m + 1) * ($n + 1);
-
-for ($i=0; $i<count($origin); $i++){
-    for ($j=0; $j<count($origin); $j++){
-        
-        if($origin[$i][$j]==1){
-            
-            for($m=0; $m<count($origin)-$i; $m++){
-                for($n=0; $n<count($origin)-$i; $n++){
-                    
-                    if($origin[$i+$m][$j+$n]!=1){
-                        break;
-                        
-                    }
-                
-                }
-            }
-            
-        }
-        
+foreach($array2 as $key)
+{
+    foreach($key as $value)
+    {
+        echo $value." ";
     }
-}
-
-echo $count;
-
-$i=0;
-$j=0;
-
-$count=0;
-
-for ($i=0; $i<3; $i++){
-    
-     for ($j=0; $j<3; $j++){
-         
-        for ($n=0; $n<3;$n++){
-         
-            if($origin[$i][$j+$n]==1){
-                $count++;
-            }
-            if($origin[$i][$j+$n]==0){
-                if($origin[$i+1][$j+$n-1]==1){ 
-                    $count++;
-                    if($origin[$i+1][$j+$n]==1){
-                        $count++;
-                        if($origin[$i+2][$j+$n]==1){
-                            $count++;
-                            if($origin[$i+2][$j+$n-1]==1){
-                                $count++;
-                                if($origin[$i+2][$j+$n-2]==1){
-                                    $count++;
-                                    if($origin[$i+1][$j+$n-2]==1){
-                                        $count++;
-                                        if($origin[$i+1][$j+$n-1]==1){
-                                            $count++;
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-         }
-    }
-}
-
-
-echo $count;
-
-
-
-*/
+    echo "<br>";
+} 
        
 ?>
