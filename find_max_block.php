@@ -1,4 +1,5 @@
 <?php
+// $origin 陣列(原陣列)
 $origin = array(
     array(1, 1, 0, 0, 0, 0, 0, 0, 0, 0),
     array(1, 1, 0, 1, 1, 0, 0, 0, 0, 0),
@@ -12,8 +13,9 @@ $origin = array(
     array(1, 1, 0, 1, 1, 0, 0, 0, 0, 1)
 );
 
-echo "Origin: <br><br>";
 
+// 印出原陣列
+echo "Origin: <br><br>";
 
 for ($i=0; $i<count($origin); $i++){
     for ($j=0; $j<count($origin); $j++){
@@ -22,6 +24,7 @@ for ($i=0; $i<count($origin); $i++){
     echo "<br>";
 }
 
+// 新陣列
 echo "<br><br> Max area of 1: <br><br>";
 
 $array=array();
@@ -35,7 +38,31 @@ for($i=0; $i<count($origin); $i++)
     {
         if ($origin[$i][$j])
         {
-            if($origin[$i+1][$j] && !$array[$i+1][$j])
+            $num=1;
+            
+            
+            if($max < $num)
+            {
+                $array2 = $array;
+                $max =$num;
+            } 
+            
+            for($row=0; $row < count($origin); $row++)
+            {
+                for($col=0; $col < count($origin[$row]); $col++)
+                {
+                    $array[$row][$col] = 0;
+                }
+            }
+        }
+    }
+}
+
+
+
+function findmax(){
+    
+    if($origin[$i+1][$j] && !$array[$i+1][$j])
             {
                 $array[$i+1][$j] = $origin[$i+1][$j];
                 $num++;
@@ -58,22 +85,7 @@ for($i=0; $i<count($origin); $i++)
                 $array[$i][$j-1] = $origin[$i][$j-1];
                 $num++;
             }
-            
-            if($max < $num)
-            {
-                $array2 = $array;
-                $max =$num;
-            } 
-            
-            for($row=0; $row < count($origin); $row++)
-            {
-                for($col=0; $col < count($origin[$row]); $col++)
-                {
-                    $array[$row][$col] = 0;
-                }
-            }
-        }
-    }
+    
 }
 
 
