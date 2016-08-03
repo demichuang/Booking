@@ -42,13 +42,13 @@
   <div class="container contactform center">
     <!-- 顯示"Please Login" -->
     <h3></h3>
-    <h2 class="text-center  wowload fadeInUp">建立活動</h2>
+    <h2 class="text-center  wowload fadeInUp">Add Activity</h2>
     <div class="row wowload fadeInLeftBig">      
       <div class="col-sm-6 col-sm-offset-3 col-xs-12">
         <!-- 顯示登入畫面 --> 
-        <form method="post" action="/Exercise/index/login" >
-          <input type="text" placeholder="AdminName" name="txtUserName" required>
-          <input type="password"  placeholder="AdminPassword" name="txtPassword"  required>
+        <form method="post" action="/Exercise/index/addactivity" >
+          <input type="text" placeholder="ActivityName" name="aname" required>
+          <input type="text" placeholder="MaxPeople" name="amaxpeople">
           <button class="btn btn-primary" name="reset" type="reset">Clear</button>&nbsp;
           &nbsp;<button class="btn btn-primary" name="signup" type="submit">Login</button> 
         </form>

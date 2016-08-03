@@ -29,6 +29,43 @@ class sqlcommand extends connect_db{
     	return $num;    // 回傳資料筆數
     }
     
+    function adduser($newuser,$newpassword){
+        $cmd="INSERT `user`(`username`,`userpassword`)  
+              VALUES('$newuser','$newpassword')";
+    	$this->db->query($cmd);
+    	
+    	$cmd1="SELECT * FROM `dst` 
+    	       WHERE `d`='1'";
+    	$result1=$this->db->query($cmd1);
+    
+    	while($row = $result1->fetch())
+	    {
+            $cmd2="INSERT `file`(`username`,`dnum`,`dname`,`additem`,`gone`)
+                   VALUES('$newuser','{$row['dnum']}','{$row['dname']}','0','0')";
+            $this->db->query($cmd2);
+	    }
+	    
+	    
+	    $cmd3="SELECT * FROM `dst` 
+	           WHERE `d`='2'";
+    	$result2=$this->db->query($cmd3);
+    
+    	while($row = $result2->fetch())
+	    {
+	        $cmd4="INSERT `file2`(`username`,`dnum`,`dname`,`additem`,`gone`)
+	               VALUES('$newuser','{$row['dnum']}','{$row['dname']}','0','0')";
+       	    $this->db->query($cmd4);
+	    } 
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
     // 從user資料表取與輸入的新username相符的資料
     function signupcheck($newuser){
         $cmd="SELECT * FROM `user` 
