@@ -27,75 +27,101 @@ for ($i=0; $i<count($origin); $i++){
 // 新陣列
 echo "<br><br> Max area of 1: <br><br>";
 
-$array=array();
-$array2=array();
 
-$max=0;
 
-for($i=0; $i<count($origin); $i++)
-{
-    for($j=0; $j<count($origin); $j++)
+$initorigin=new area($origin);
+
+$initorigin->start();
+
+$initorigin->printafter();
+
+class area{
+
+    var $oarray=array();
+    var $oarray2=array();
+    var $origin;
+    var $maxarea=0;
+    
+    function __construct($arr)
     {
-        if ($origin[$i][$j])
+        $this -> origin = $arr;
+        $originstart = $this -> origin;
+    }
+        
+    
+    function start(){
+    
+        for($i=0; $i<count($originstart); $i++)
         {
-            $num=1;
-            
-            
-            if($max < $num)
+            for($j=0; $j<count($originstart); $j++)
             {
-                $array2 = $array;
-                $max =$num;
-            } 
-            
-            for($row=0; $row < count($origin); $row++)
-            {
-                for($col=0; $col < count($origin[$row]); $col++)
+                if ($originstart[$i][$j])
                 {
-                    $array[$row][$col] = 0;
+                    $num=1;
+                    $getnum=$this->findmax($i,$j)+1;
+                    
+                    if($this->maxarea < $getnum)
+                    {
+                        $this->oarray2 = $this->oarray;
+                        $this->maxarea =$getnum;
+                    } 
+                    
+                    for($row=0; $row < count($originstart); $row++)
+                    {
+                        for($col=0; $col < count($originstart[$row]); $col++)
+                        {
+                            $this->oarray[$row][$col] = 0;
+                        }
+                    }
                 }
             }
         }
     }
-}
-
-
-
-function findmax(){
     
-    if($origin[$i+1][$j] && !$array[$i+1][$j])
-            {
-                $array[$i+1][$j] = $origin[$i+1][$j];
-                $num++;
-            };
-            
-            if($origin[$i-1][$j] && !$array[$i-1][$j])
-            {
-                $array[$i-1][$j] = $origin[$i-1][$j];
-                $num++;
-            };
-            
-            if($origin[$i][$j+1] && !$array[$i][$j+1])
-            {
-                $array[$i][$j+1] = $origin[$i][$j+1];
-                $num++;
-            };
-            
-            if($origin[$i][$j-1] && !$array[$i][$j-1])
-            {
-                $array[$i][$j-1] = $origin[$i][$j-1];
-                $num++;
-            }
     
-}
-
-
-foreach($array2 as $key)
-{
-    foreach($key as $value)
-    {
-        echo $value." ";
+    function findmax(){
+        
+        if($originstart[$i+1][$j] && !$this->oarray[$i+1][$j])
+        {
+            $this->oarray[$i+1][$j] = $originstart[$i+1][$j];
+            $num++;
+            $num += $this->findnax($i+1,$j);
+        };
+        
+        if($originstart[$i-1][$j] && !$this->oarray[$i-1][$j])
+        {
+            $this->oarray[$i-1][$j] = $originstart[$i-1][$j];
+            $num++;
+            $num += $this->findnax($i-1,$j);
+        };
+        
+        if($originstart[$i][$j+1] && !$this->oarray[$i][$j+1])
+        {
+            $this->oarray[$i][$j+1] = $originstart[$i][$j+1];
+            $num++;
+            $num += $this->findnax($i,$j+1);
+        };
+        
+        if($originstart[$i][$j-1] && !$this->oarray[$i][$j-1])
+        {
+            $this->oarray[$i][$j-1] = $originstart[$i][$j-1];
+            $num++;
+            $num += $this->findnax($i,$j-1);
+        };
+        return $num;
     }
-    echo "<br>";
-} 
+    
+    function printafter()
+    {
+        foreach($this->oarray2 as $key)
+        {
+            foreach($key as $value)
+            {
+                echo $value." ";
+            }
+            echo "<br>";
+        } 
+    }
+}
        
 ?>
