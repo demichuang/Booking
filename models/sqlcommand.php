@@ -42,9 +42,26 @@ class sqlcommand extends connect_db{
            array_push($array,$row['act_name']);
            array_push($array2,$row['numpeople']);
 	    }
-    	
     	return [$num,$array,$array2];    // 回傳資料筆數
     }
+
+
+//admin
+    // 輸入活動 
+    function addact($aname,$maxpeople,$starttime,$endtime){
+        $cmd="INSERT `addactivity`(`act_name`,`maxpeople`,`numpeople`,`starttime`,`endtime`)  
+              VALUES('$aname','$maxpeople','0','$starttime','$endtime')";
+    	$this->db->query($cmd);
+    }
+    
+    // 輸入人員
+    function adde($aname,$enum,$ename){
+        $cmd="INSERT `employee`(`act_name`,`enum`,`ename`,`join`)  
+              VALUES('$aname','$enum','$ename','0')";
+    	$this->db->query($cmd);
+    }
+    
+    
     
     
     
@@ -66,34 +83,7 @@ class sqlcommand extends connect_db{
     }
     
     
-    function addact($name,$max){
-        $cmd="INSERT `user`(`username`,`userpassword`)  
-              VALUES('$newuser','$newpassword')";
-    	$this->db->query($cmd);
-    	
-    	$cmd1="SELECT * FROM `dst` 
-    	       WHERE `d`='1'";
-    	$result1=$this->db->query($cmd1);
     
-    	while($row = $result1->fetch())
-	    {
-            $cmd2="INSERT `file`(`username`,`dnum`,`dname`,`additem`,`gone`)
-                   VALUES('$newuser','{$row['dnum']}','{$row['dname']}','0','0')";
-            $this->db->query($cmd2);
-	    }
-	    
-	    
-	    $cmd3="SELECT * FROM `dst` 
-	           WHERE `d`='2'";
-    	$result2=$this->db->query($cmd3);
-    
-    	while($row = $result2->fetch())
-	    {
-	        $cmd4="INSERT `file2`(`username`,`dnum`,`dname`,`additem`,`gone`)
-	               VALUES('$newuser','{$row['dnum']}','{$row['dname']}','0','0')";
-       	    $this->db->query($cmd4);
-	    } 
-    }
     
     
     

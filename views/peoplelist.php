@@ -37,19 +37,16 @@
 
 <!-- Activity Starts-->
   <div class="container contactform center">
-    <!-- 顯示"Add Activity" -->
+    <!-- 顯示活動名稱 -->
     <h3></h3>
-    <h2 class="text-center  wowload fadeInUp">Add Activity</h2>
+    <h2 class="text-center  wowload fadeInUp"><?php echo $data?></h2>
     <div class="row wowload fadeInLeftBig">      
       <div class="col-sm-6 col-sm-offset-3 col-xs-12">
-        <!-- 顯示新增活動畫面 --> 
-        <form method="post" action="/Exercise/admin/addactivity" >
-          <input type="text" placeholder="活動名稱" name="aname" required>
-          <input type="text" placeholder="人數限制" name="maxpeople">
-          <input type="text" placeholder="攜伴?" name="withpeople">
-          <input type="text" placeholder="年/月/日" name="starttime">
-          <input type="text" placeholder="年/月/日" name="endtime">
-          <input type="text" placeholder="URL?" name="amaxpeople">
+        <!-- 顯示新增人員畫面 --> 
+        <form method="post" action="/Exercise/admin/addpeople?aname=<?php echo $data?>" >
+          <input type="text" placeholder="員工編號" name="enum" required>
+          <input type="text" placeholder="員工名稱" name="ename" required>
+          <!--<button class="btn btn-primary" name="aname" type="hidden">Clear</button>-->
           <button class="btn btn-primary" name="reset" type="reset">Clear</button>&nbsp;
           &nbsp;<button class="btn btn-primary" name="signup" type="submit">Add</button> 
         </form>
