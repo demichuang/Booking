@@ -26,12 +26,8 @@
   <div class="container">
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation" id="top-nav">
       <div class="container">
-        
-        <!-- 尚未登入時，顯示註冊連結 -->
-        <?php if ($data == "Guest"): ?>
+        <!-- 顯示回首頁連結 -->
          <a class="navbar-brand active" href="/Exercise/index/index"><h4>回首頁</h4></a>
-        <?php endif; ?>    
-
       </div>
      </div>
    </div>
@@ -40,33 +36,31 @@
 
 
 <!-- Login Starts-->
-  <div class="container contactform center">
-    <!-- 顯示"Please Login" -->
-    <h3></h3>
-    <h2 class="text-center  wowload fadeInUp">Please Login</h2>
-    <div class="row wowload fadeInLeftBig">      
-      <div class="col-sm-6 col-sm-offset-3 col-xs-12">
-        <!-- 顯示登入畫面 --> 
-        <form method="post" action="/Exercise/index/login" >
-          <input type="text" placeholder="AdminName" name="txtUserName" required>
-          <input type="password"  placeholder="AdminPassword" name="txtPassword"  required>
-          <button class="btn btn-primary" name="reset" type="reset">Clear</button>&nbsp;
-          &nbsp;<button class="btn btn-primary" name="signup" type="submit">Login</button> 
-        </form>
-      </div>
+<div class="container contactform center">
+  <!-- 顯示"Please Login" -->
+  <h3></h3>                                         
+  <h2 class="text-center  wowload fadeInUp">Please Login</h2>
+  <div class="row wowload fadeInLeftBig">      
+    <div class="col-sm-6 col-sm-offset-3 col-xs-12">
+      <!-- 顯示登入畫面 --> 
+      <form method="post" action="/Exercise/index/login" >
+        <input type="text" placeholder="AdminName" name="txtUserName" required>
+        <input type="password"  placeholder="AdminPassword" name="txtPassword"  required>
+        <button class="btn btn-primary" name="reset" type="reset">Clear</button>&nbsp;
+        &nbsp;<button class="btn btn-primary" name="signup" type="submit">Login</button> 
+      </form>
     </div>
-    &nbsp;&nbsp;
-    
-    <!-- 得data=4值，顯示帳號名已被使用 -->
-    <?php if ($data2==1):?> 
-      <h4 class="text-center  wowload fadeInUp">You have wrong enter or you are not an administer.</h4>
-      <h4 class="text-center  wowload fadeInUp">Please try again.</h4>
-    <?php endif; ?>
-    
-  
   </div>
+  &nbsp;&nbsp;
+  
+  <!-- 得data2=1值，顯示輸入錯誤，或不是管理員 -->
+  <?php if ($data2==1):?> 
+    <h4 class="text-center  wowload fadeInUp">You have wrong enter or you are not an administer.</h4>
+    <h4 class="text-center  wowload fadeInUp">Please try again.</h4>
+  <?php endif; ?>
+
 </div>
-<!-- Signup Ends-->
+<!-- Login Ends-->
 
 </body>
 </html>

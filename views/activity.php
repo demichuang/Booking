@@ -26,26 +26,23 @@
   <div class="container">
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation" id="top-nav">
       <div class="container">
-        
-        <!-- 尚未登入時，顯示註冊連結 -->
-        
+        <!-- 顯示回首頁連結 -->
          <a class="navbar-brand active" href="/Exercise/index/index"><h4>回首頁</h4></a>
-           
-
       </div>
      </div>
    </div>
 </div>
 <!-- Header Ends -->
 
-<!-- Login Starts-->
+
+<!-- Activity Starts-->
   <div class="container contactform center">
-    <!-- 顯示"Please Login" -->
+    <!-- 顯示"Add Activity" -->
     <h3></h3>
     <h2 class="text-center  wowload fadeInUp">Add Activity</h2>
     <div class="row wowload fadeInLeftBig">      
       <div class="col-sm-6 col-sm-offset-3 col-xs-12">
-        <!-- 顯示登入畫面 --> 
+        <!-- 顯示新增活動畫面 --> 
         <form method="post" action="/Exercise/index/addactivity" >
           <input type="text" placeholder="ActivityName" name="aname" required>
           <input type="text" placeholder="MaxPeople" name="amaxpeople">
@@ -58,7 +55,7 @@
     
   </div>
 </div>
-<!-- Signup Ends-->
+<!-- Activity Ends-->
 
 </body>
 </html>
