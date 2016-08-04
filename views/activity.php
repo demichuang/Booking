@@ -46,10 +46,10 @@
         <form method="post" action="/Exercise/admin/addactivity" >
           <input type="text" placeholder="活動名稱" name="aname" required>
           <input type="text" placeholder="人數限制" name="maxpeople">
-          <input type="text" placeholder="攜伴?" name="withpeople">
+          <input type="text" placeholder="攜伴人數(可：1，不可：0)" name="withpeople">
           <input type="text" placeholder="年/月/日" name="starttime">
           <input type="text" placeholder="年/月/日" name="endtime">
-          <input type="text" placeholder="URL?" name="amaxpeople">
+          <!--<input type="text" placeholder="URL?" name="amaxpeople">-->
           <button class="btn btn-primary" name="reset" type="reset">Clear</button>&nbsp;
           &nbsp;<button class="btn btn-primary" name="signup" type="submit">Add</button> 
         </form>

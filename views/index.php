@@ -34,6 +34,7 @@
         <?php else: ?>
          <a class="navbar-brand active" href="/Exercise/index/logout"><h4>管理者登出</h4></a>
             <ul class="nav navbar-nav navbar-right">
+              <li ><a href="/Exercise/admin/edita"><h4>編輯活動</h4></a></li>
               <li ><a href="/Exercise/admin/admin"><h4>新增活動</h4></a></li>
             </ul>
         <?php endif; ?> 
