@@ -44,11 +44,12 @@
       <div class="col-sm-6 col-sm-offset-3 col-xs-12">
         <!-- 顯示新增活動畫面 --> 
         <form method="post" action="/Exercise/admin/addactivity" >
+          <input type="text" placeholder="活動編號" name="anum" required>
           <input type="text" placeholder="活動名稱" name="aname" required>
           <input type="text" placeholder="人數限制" name="maxpeople">
-          <input type="text" placeholder="攜伴人數(可：1，不可：0)" name="withpeople">
-          <input type="text" placeholder="年/月/日" name="starttime">
-          <input type="text" placeholder="年/月/日" name="endtime">
+          <input type="text" placeholder="可否攜伴(可：1，不可：0)" name="withpeople" required>
+          <input type="text" placeholder="年/月/日" name="starttime" required>
+          <input type="text" placeholder="年/月/日" name="endtime" required>
           <!--<input type="text" placeholder="URL?" name="amaxpeople">-->
           <button class="btn btn-primary" name="reset" type="reset">Clear</button>&nbsp;
           &nbsp;<button class="btn btn-primary" name="signup" type="submit">Add</button> 

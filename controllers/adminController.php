@@ -9,6 +9,7 @@ class adminController extends Controller {
     
     //  新增活動
     function addactivity(){
+        $anum=$_POST["anum"];
         $aname=$_POST["aname"];         //  得輸入的新username
         $maxpeople=$_POST['maxpeople'];
         $withpeople=$_POST['withpeople'];
@@ -33,7 +34,7 @@ class adminController extends Controller {
     
     
     //  編輯活動
-    function addactivity(){
+    function adactivity(){
         $aname=$_POST["aname"];         //  得輸入的新username
         $maxpeople=$_POST['maxpeople'];
         $withpeople=$_POST['withpeople'];
