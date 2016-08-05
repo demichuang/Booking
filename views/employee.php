@@ -21,32 +21,52 @@
 <body>
 <h3></h3>
 
-<!-- Employee Starts -->
+<!-- Header Starts -->
+<div class="navbar-wrapper">
+  <div class="container">
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation" id="top-nav">
+      <div class="container">
+        <!-- 顯示回首頁連結 -->
+         <a class="navbar-brand active" href="/Exercise/index/index"><h4>回首頁</h4></a>
+      </div>
+     </div>
+   </div>
+</div>
+<!-- Header Ends -->
+
+
+<!-- Join Starts -->
 <div id="contact" class="mail">
   <div class="container contactform center">
-    <!-- 顯示"Join Activity" -->
-    <h2 class="text-center  wowload fadeInUp">Join Activity</h2>
+    <!-- 顯示活動報名名稱 -->
+    <h2 class="text-center  wowload fadeInUp"><?php echo $data?>報名</h2>
     <div class="row wowload fadeInLeftBig">      
       <div class="col-sm-6 col-sm-offset-3 col-xs-12"> 
+        
         <!-- 顯示報名畫面 -->
-        <form method="post" action="/Exercise/index/add">
+        <form method="post" action="/Exercise/employee/add?actname=<?php echo $data?>">
           <input type="text" placeholder="員工編號" name="Employeenum" required>
-          <input type="text" placeholder="攜伴人數" name="Withpeople">
+          
+          <!-- 如果可以攜伴 -->
+          <?php if($data3 ==1):?>
+            <input type="text" placeholder="攜伴人數" name="Withpeople" required>
+          <?php endif;?>
+          
           <button class="btn btn-primary" name="login" type="submit">報名參加</button> 
         </form>
+        
       </div>
     </div>
-  
-    <!-- 得$data2=1值，顯示要先登入 -->
-    <!--<?php if ($data2==1):?> -->
-    <!--  <h4 class="text-center  wowload fadeInUp">You need to login first.</h4>-->
-    <!--<?php endif; ?>-->
     
+    <!-- 顯示輸入人數超過上限 -->
+    <?php if($data2[0]!=""):?>
+      <h4 class="text-center  wowload fadeInUp"><?php echo $data2[0]?></h4>
+      <h4 class="text-center  wowload fadeInUp">(人數上限:<?php echo $data2[1]?>，現在報名人數:<?php echo $data2[2]?>)</h4>
+    <?php endif;?>
     
-  
   </div>
 </div>
-<!-- Employee Ends -->
+<!-- Join Ends -->
 
 </body>
 </html>

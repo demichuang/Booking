@@ -1,6 +1,7 @@
 <?php
 
 class sqlcommand extends connect_db{
+    
 //首頁
     // 判斷$_SESSION["adminName"]是否存在 
     function haveuser(){
@@ -36,21 +37,23 @@ class sqlcommand extends connect_db{
     	$num=$result->rowCount();
     	$array=array();
     	$array2=array();
+    	$array3=array();
     	
     	while($row = $result->fetch())
 	    {
            array_push($array,$row['act_name']);
-           array_push($array2,$row['numpeople']);
+           array_push($array2,$row['maxpeople']);
+           array_push($array3,$row['numpeople']);
 	    }
-    	return [$num,$array,$array2];    // 回傳資料筆數
+    	return [$num,$array,$array2,$array3];    // 回傳資料筆數
     }
 
 
 //admin
     // 輸入活動 
-    function addact($aname,$maxpeople,$starttime,$endtime){
-        $cmd="INSERT `addactivity`(`act_name`,`maxpeople`,`numpeople`,`starttime`,`endtime`)  
-              VALUES('$aname','$maxpeople','0','$starttime','$endtime')";
+    function addact($anum,$aname,$maxpeople,$starttime,$endtime,$withpeople){
+        $cmd="INSERT `addactivity`(`act_num`,`act_name`,`maxpeople`,`numpeople`,`starttime`,`endtime`,`with`)  
+              VALUES('$anum','$aname','$maxpeople','0','$starttime','$endtime','$withpeople')";
     	$this->db->query($cmd);
     }
     
@@ -61,82 +64,38 @@ class sqlcommand extends connect_db{
     	$this->db->query($cmd);
     }
     
-    
-    
-    
-    
-    
-    
-    
-    function joinact($actnum){
-        $cmd="SELECT * FROM `addactivity` 
-              WHERE `actnum`='$actnum'";
-    	$result=$this->db->query($cmd);
-    	$row = $result->fetch();
-	    
-        	if($row['numpeople']<=$row['maxpeople']){
-        	    $cmd="UPDATE `addactivity`(`numpeople`)  
-                    VALUES('$actnum+1')";
-        	    $this->db->query($cmd);
-        	}
 
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    // 從user資料表取與輸入的新username相符的資料
-    function signupcheck($newuser){
-        $cmd="SELECT * FROM `user` 
-              WHERE `username`='$newuser'";
+//employee
+    // 判斷是否可攜伴
+    function with($actname){
+        $cmd="SELECT * FROM `addactivity`   
+              WHERE `act_name` ='$actname'";
     	$result=$this->db->query($cmd);
-        $num=$result->rowCount();
-        $row=$result->fetch();
+    	$row=$result->fetch();
         
-    	return [$row,$num]; // 回傳結果
+        return $row['with'];        
     }
-    
-    // 新增新使用者的資料
-    function adduser($newuser,$newpassword){
-        $cmd="INSERT `user`(`username`,`userpassword`)  
-              VALUES('$newuser','$newpassword')";
-    	$this->db->query($cmd);
-    	
-    	$cmd1="SELECT * FROM `dst` 
-    	       WHERE `d`='1'";
-    	$result1=$this->db->query($cmd1);
-    
-    	while($row = $result1->fetch())
-	    {
-            $cmd2="INSERT `file`(`username`,`dnum`,`dname`,`additem`,`gone`)
-                   VALUES('$newuser','{$row['dnum']}','{$row['dname']}','0','0')";
-            $this->db->query($cmd2);
-	    }
-	    
-	    
-	    $cmd3="SELECT * FROM `dst` 
-	           WHERE `d`='2'";
-    	$result2=$this->db->query($cmd3);
-    
-    	while($row = $result2->fetch())
-	    {
-	        $cmd4="INSERT `file2`(`username`,`dnum`,`dname`,`additem`,`gone`)
-	               VALUES('$newuser','{$row['dnum']}','{$row['dname']}','0','0')";
-       	    $this->db->query($cmd4);
-	    } 
-    }
-    
-    
-    
 
+    // 活動報名
+    function joinact($actname,$enum,$peoplenum){
+        $cmd="SELECT * FROM `addactivity`   
+              WHERE `act_name` ='$actname'";
+    	$result=$this->db->query($cmd);
+    	$row=$result->fetch();
+    	
+    	$total=$row['numpeople']+$peoplenum;
+    	
+    	if($total>$row['maxpeople'])
+    	    return ["超出人數上限",$row['maxpeople'],$row['numpeople'],$row['with']];
+    	else
+    	{
+    	    $cmd1="UPDATE `addactivity` 
+    	           SET `numpeople`='$total'  
+                   WHERE `act_name` ='$actname'";
+    	    $this->db->query($cmd1);
+    	}
+    }
+    
 }
 
 ?>

@@ -34,7 +34,6 @@
         <?php else: ?>
          <a class="navbar-brand active" href="/Exercise/index/logout"><h4>管理者登出</h4></a>
             <ul class="nav navbar-nav navbar-right">
-              <li ><a href="/Exercise/admin/edita"><h4>編輯活動</h4></a></li>
               <li ><a href="/Exercise/admin/admin"><h4>新增活動</h4></a></li>
             </ul>
         <?php endif; ?> 
@@ -55,8 +54,14 @@
   <?php 
     for($i=0; $i<$data2[0]; $i++)
     {
-      echo "<h4>{$data2[1][$i]}(現在報名人數:{$data2[2][$i]})";  
-      //echo "<a href='/Exercise/index/goact?actnum=$data2[1][$i]'>報名</a>";   // 刪除景點      
+      echo "<h3>{$data2[1][$i]}</h3>";                                        // 顯示活動名稱
+      echo "<h4>(人數上限:{$data2[2][$i]}，現在報名人數:{$data2[3][$i]})";    // 顯示人數現況
+      
+      if($data2[2][$i]==$data2[3][$i])                                                // 如果報名人數達到上限
+        echo "已滿";                                                                  // 顯示已滿
+      else                                                                            // 如果報名人數尚未達到上限        
+        echo "<a href='/Exercise/employee/employee?name={$data2[1][$i]}'>報名</a>";   // 顯示報名連結   
+      
       echo "</h4>";       
     }
   ?>

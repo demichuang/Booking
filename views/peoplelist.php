@@ -44,11 +44,10 @@
       <div class="col-sm-6 col-sm-offset-3 col-xs-12">
         <!-- 顯示新增人員畫面 --> 
         <form method="post" action="/Exercise/admin/addpeople?aname=<?php echo $data?>" >
-          <input type="text" placeholder="員工編號" name="enum" required>
-          <input type="text" placeholder="員工名稱" name="ename" required>
-          <!--<button class="btn btn-primary" name="aname" type="hidden">Clear</button>-->
-          <button class="btn btn-primary" name="reset" type="reset">Clear</button>&nbsp;
-          &nbsp;<button class="btn btn-primary" name="signup" type="submit">Add</button> 
+          <input type="text" placeholder="新增員工編號" name="enum" required>
+          <input type="text" placeholder="新增員工名稱" name="ename" required>
+          <input type="button" value="新增欄位" onclick="add_new_data()"/>
+          <button class="btn btn-primary" name="signup" type="submit">Add</button> 
         </form>
       </div>
     </div>
@@ -57,6 +56,9 @@
   </div>
 </div>
 <!-- Activity Ends-->
+
+<script src="/Exercise/views/js/peoplelist.js"></script>
+
 
 </body>
 </html>

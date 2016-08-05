@@ -10,7 +10,7 @@ class indexController extends Controller {
         $getact=$this->model("sqlcommand");
         $array=$getact->showactname();          // 取活動資料
         
-        $this->view("index",$AdminName,[$array[0],$array[1],$array[2]]);    // 回首頁(data1:身分、data2:活動資料)
+        $this->view("index",$AdminName,[$array[0],$array[1],$array[2],$array[3]]);    // 回首頁(data1:身分、data2:活動資料)
     } 
     
     //  到管理者登入頁

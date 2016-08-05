@@ -9,16 +9,23 @@ class adminController extends Controller {
     
     //  新增活動
     function addactivity(){
-        $anum=$_POST["anum"];
-        $aname=$_POST["aname"];         //  得輸入的新username
-        $maxpeople=$_POST['maxpeople'];
-        $withpeople=$_POST['withpeople'];
-        $starttime=$_POST['starttime'];
-        $endtime=$_POST['endtime'];
-
-        $addact=$this->model("sqlcommand");
-    	$addact->addact($aname,$maxpeople,$starttime,$endtime);
-        $this->view("peoplelist",$aname);
+        $anum=$_POST["anum"];               // 活動編號
+        $aname=$_POST["aname"];             // 活動名稱
+        $maxpeople=$_POST['maxpeople'];     // 人數上限
+        $starttime=$_POST['starttime'];     // 開始時間
+        $endtime=$_POST['endtime'];         // 結束時間
+        $withpeople=$_POST['withpeople'];   // 是否可攜伴
+        
+        if ($starttime>$endtime)                                                                // 如果開始時間和結束時間輸入錯誤
+            $this->view("activity",[$anum,$aname,$maxpeople,$starttime,$endtime,$withpeople],0);    // 回activity頁
+        if ($withpeople!=0 or $withpeople!=1)                                                   // 如果攜伴人數輸入錯誤
+            $this->view("activity",[$anum,$aname,$maxpeople,$starttime,$endtime,$withpeople],1);    // 回activity頁
+        else                                                                                    // 輸入正確
+        {
+            $addact=$this->model("sqlcommand");
+        	$addact->addact($anum,$aname,$maxpeople,$starttime,$endtime,$withpeople);           // 活動寫進資料庫
+            header("location:/Exercise/index");                                                 // 回首頁
+        }
     }
     
     //  新增人員
@@ -31,21 +38,6 @@ class adminController extends Controller {
     	$adde->adde($aname,$enum,$ename);
         header("location:/Exercise/index");
     }
-    
-    
-    //  編輯活動
-    function adactivity(){
-        $aname=$_POST["aname"];         //  得輸入的新username
-        $maxpeople=$_POST['maxpeople'];
-        $withpeople=$_POST['withpeople'];
-        $starttime=$_POST['starttime'];
-        $endtime=$_POST['endtime'];
-
-        $addact=$this->model("sqlcommand");
-    	$addact->addact($aname,$maxpeople,$starttime,$endtime);
-        $this->view("peoplelist",$aname);
-    }
-    
 
     
 }
