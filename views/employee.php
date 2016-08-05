@@ -64,6 +64,10 @@
       <h4 class="text-center  wowload fadeInUp">(人數上限:<?php echo $data2[1]?>，現在報名人數:<?php echo $data2[2]?>)</h4>
     <?php endif;?>
     
+    <?php if($data4!=""):?>
+    <h4 class="text-center  wowload fadeInUp"><?php echo $data4?></h4>
+    <?php endif;?>
+    
   </div>
 </div>
 <!-- Join Ends -->

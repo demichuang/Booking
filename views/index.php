@@ -55,6 +55,8 @@
     for($i=0; $i<$data2[0]; $i++)
     {
       echo "<h3>{$data2[1][$i]}</h3>";                                        // 顯示活動名稱
+      if ($data != "Guest")
+        echo "<h5><a href='/Exercise/admin/gopeople?name={$data2[1][$i]}'>新增人員名稱</a></h5>";
       echo "<h4>(人數上限:{$data2[2][$i]}，現在報名人數:{$data2[3][$i]})";    // 顯示人數現況
       
       if($data2[2][$i]==$data2[3][$i])                                                // 如果報名人數達到上限

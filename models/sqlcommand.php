@@ -59,8 +59,8 @@ class sqlcommand extends connect_db{
     
     // 輸入人員
     function adde($aname,$enum,$ename){
-        $cmd="INSERT `employee`(`act_name`,`enum`,`ename`,`join`)  
-              VALUES('$aname','$enum','$ename','0')";
+        $cmd="INSERT `employee`(`act_name`,`enum`,`ename`,`join`,`joinnum`)  
+              VALUES('$aname','$enum','$ename','0','0')";
     	$this->db->query($cmd);
     }
     
@@ -74,6 +74,16 @@ class sqlcommand extends connect_db{
     	$row=$result->fetch();
         
         return $row['with'];        
+    }
+    
+    // 判斷是否有權利參加
+    function ifeuser($actname,$enum){
+        $cmd="SELECT * FROM `employee`  
+              WHERE `act_name` ='$actname'
+              AND `enum` ='$enum'";
+    	$result = $this->db->query($cmd);
+        $num = $result->rowCount();
+        return $num;
     }
 
     // 活動報名

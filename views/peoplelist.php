@@ -35,7 +35,7 @@
 <!-- Header Ends -->
 
 
-<!-- Activity Starts-->
+<!-- Addpeople Starts-->
   <div class="container contactform center">
     <!-- 顯示活動名稱 -->
     <h3></h3>
@@ -46,7 +46,6 @@
         <form method="post" action="/Exercise/admin/addpeople?aname=<?php echo $data?>" >
           <input type="text" placeholder="新增員工編號" name="enum" required>
           <input type="text" placeholder="新增員工名稱" name="ename" required>
-          <input type="button" value="新增欄位" onclick="add_new_data()"/>
           <button class="btn btn-primary" name="signup" type="submit">Add</button> 
         </form>
       </div>
@@ -55,10 +54,7 @@
     
   </div>
 </div>
-<!-- Activity Ends-->
-
-<script src="/Exercise/views/js/peoplelist.js"></script>
-
+<!-- Addpeople Ends-->
 
 </body>
 </html>

@@ -5,7 +5,13 @@ class adminController extends Controller {
     //  到新增活動頁
     function admin(){
         $this->view("activity");    
-    }     
+    } 
+    
+    //  到新增人員頁
+    function gopeople(){
+        $actname = $_GET['name'];           // 活動名稱
+        $this->view("peoplelist",$actname);    
+    } 
     
     //  新增活動
     function addactivity(){
@@ -30,9 +36,9 @@ class adminController extends Controller {
     
     //  新增人員
     function addpeople(){
-        $aname=$_GET['aname'];
-        $enum=$_POST["enum"];        
-        $ename=$_POST["ename"]; 
+        $aname=$_GET['aname'];      // 活動名稱
+        $enum=$_POST["enum"];       // 員工編號
+        $ename=$_POST["ename"];     // 員工名稱
 
         $adde=$this->model("sqlcommand");
     	$adde->adde($aname,$enum,$ename);
