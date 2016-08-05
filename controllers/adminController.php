@@ -41,10 +41,9 @@ class adminController extends Controller {
         $ename=$_POST["ename"];     // 員工名稱
 
         $adde=$this->model("sqlcommand");
-    	$adde->adde($aname,$enum,$ename);
-        header("location:/Exercise/index");
+    	$adde->adde($aname,$enum,$ename);       // 新增人員到資料表
+        header("location:/Exercise/index");     // 回首頁
     }
-
     
 }
 

@@ -83,7 +83,7 @@ class sqlcommand extends connect_db{
               AND `enum` ='$enum'";
     	$result = $this->db->query($cmd);
         $num = $result->rowCount();
-        return $num;
+        return $num;         
     }
 
     // 活動報名
