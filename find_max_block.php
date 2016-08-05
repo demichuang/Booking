@@ -61,10 +61,10 @@ class area{
                 {
                     $getnum=$this->findmax($i,$j);                  // 搜尋$origin[$i][$j]位置周圍是否值為1
                     
-                    if($getnum > $maxarea)                  // 如果搜尋到面積的"1"數量 > 儲存的最大數量
+                    if($getnum > $this->maxarea)                  // 如果搜尋到面積的"1"數量 > 儲存的最大數量
                     {
                         $this->maxarray = $this->temparray;         // 最大陣列設為暫存陣列
-                        $maxarea =$getnum;                          // 新搜尋到的"1"數量取代原最大數量
+                        $this->maxarea =$getnum;                          // 新搜尋到的"1"數量取代原最大數量
                     } 
                     
                     for($row=0; $row < count($this->origin); $row++)
@@ -82,13 +82,6 @@ class area{
     // 搜尋$origin[$i][$j]位置周圍是否有1(有找到的話=>num+1)
     function findmax($i,$j)
     {
-        if($this->origin[$i+1][$j] && !$this->temparray[$i+1][$j])  // 往下找
-        {
-            $this->temparray[$i+1][$j] = $this->origin[$i+1][$j];
-            $num++;
-            $num += $this->findmax($i+1,$j);
-        };
-        
         if($this->origin[$i-1][$j] && !$this->temparray[$i-1][$j])  // 往上找
         {
             $this->temparray[$i-1][$j] = $this->origin[$i-1][$j];
@@ -96,11 +89,11 @@ class area{
             $num += $this->findmax($i-1,$j);
         };
         
-        if($this->origin[$i][$j+1] && !$this->temparray[$i][$j+1])  // 往右找
+        if($this->origin[$i+1][$j] && !$this->temparray[$i+1][$j])  // 往下找
         {
-            $this->temparray[$i][$j+1] = $this->origin[$i][$j+1];
+            $this->temparray[$i+1][$j] = $this->origin[$i+1][$j];
             $num++;
-            $num += $this->findmax($i,$j+1);
+            $num += $this->findmax($i+1,$j);
         };
         
         if($this->origin[$i][$j-1] && !$this->temparray[$i][$j-1])  // 往左找
@@ -108,6 +101,13 @@ class area{
             $this->temparray[$i][$j-1] = $this->origin[$i][$j-1];
             $num++;
             $num += $this->findmax($i,$j-1);
+        };
+        
+        if($this->origin[$i][$j+1] && !$this->temparray[$i][$j+1])  // 往右找
+        {
+            $this->temparray[$i][$j+1] = $this->origin[$i][$j+1];
+            $num++;
+            $num += $this->findmax($i,$j+1);
         };
         return $num;        // 回傳找到的1數量
     }
