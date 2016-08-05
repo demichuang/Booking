@@ -67,52 +67,62 @@ class area{
                         $this->maxarea =$getnum;                          // 新搜尋到的"1"數量取代原最大數量
                     } 
                     
-                    for($row=0; $row<count($this->origin); $row++)
-                    {
-                        for($col=0; $col<count($this->origin); $col++)
-                        {
-                            $this->temparray[$row][$col] = 0;       // 暫存陣列歸0                    
-                        }
-                    }
+                    $this->temp();                          // 暫存陣列洗掉
                 }
             }
         }
     }
     
+    
+    
+    
+    
     // 搜尋$origin[$i][$j]位置周圍是否有1(有找到的話=>num+1)
     function findmax($i,$j)
     {   
-        $num =0;
+        $count =0;
         
         if($this->origin[$i-1][$j] && !$this->temparray[$i-1][$j])  // 往上找
         {
+            $count++;
             $this->temparray[$i-1][$j] = $this->origin[$i-1][$j];
-            $num++;
-            $num+= $this->findmax($i-1,$j);
+            $count+= $this->findmax($i-1,$j);
         };
         
         if($this->origin[$i][$j+1] && !$this->temparray[$i][$j+1])  // 往右找
         {
+            $count++;
             $this->temparray[$i][$j+1] = $this->origin[$i][$j+1];
-            $num++;
-            $num+= $this->findmax($i,$j+1);
+            $count+= $this->findmax($i,$j+1);
         };
         
         if($this->origin[$i+1][$j] && !$this->temparray[$i+1][$j])  // 往下找
         {
+            $count++;
             $this->temparray[$i+1][$j] = $this->origin[$i+1][$j];
-            $num++;
-            $num+= $this->findmax($i+1,$j);
+            $count+= $this->findmax($i+1,$j);
         };
         
         if($this->origin[$i][$j-1] && !$this->temparray[$i][$j-1])  // 往左找
         {
+            $count++;
             $this->temparray[$i][$j-1] = $this->origin[$i][$j-1];
-            $num++;
-            $num+= $this->findmax($i,$j-1);
+            $count+= $this->findmax($i,$j-1);
         };
         
-        return $num;        // 回傳找到的1數量
+        return $count;        // 回傳找到的數量
+    }
+    
+    // 暫存陣列歸0
+    function temp()
+    {   
+        for($row=0; $row<count($this->origin); $row++)
+        {
+            for($col=0; $col<count($this->origin); $col++)
+            {
+                $this->temparray[$row][$col] = 0;                           
+            }
+        }
     }
     
     // 印出有最大1面積的新陣列
