@@ -16,22 +16,16 @@
 <link rel="icon" href="/Exercise/views/images/favicon.ico" type="image/x-icon">
 <link rel="stylesheet" href="/Exercise/views/assets/style.css">
 <script type="text/javascript" src="jquery.min.js">
-// $(document).ready(function(){
+
+$(document).ready(function(){
   
-//   $("#nowpeople").click(
-//     function(){
-//       $.get('/Exercise/employee/add
-//     }
-    
-    
-//     );
-//   // setTimeout(nowpeople, 10);
-// }
-    
-  
-  
-  
-// });
+  $("#nowpeople").click(function(){
+      $.ajax({
+				url: '/Exercise/employee/show?actname=<?php echo $data?>'
+				
+      })
+  })
+});
 
 </script>
 </head>
@@ -71,7 +65,7 @@
             <input type="text" placeholder="攜伴人數" name="Withpeople" required>
           <?php endif;?>
           
-          <button class="btn btn-primary" type="submit">報名參加</button> 
+          <button class="btn btn-primary" type="submit" id="nowpeople">報名參加</button> 
           
         </form>
         <form method="post" action="/Exercise/employee/show?actname=<?php echo $data?>">
