@@ -24,14 +24,14 @@ class adminController extends Controller {
         
         if ($starttime>$endtime)                                                                // 如果開始時間和結束時間輸入錯誤
             $this->view("activity",[$anum,$aname,$maxpeople,$starttime,$endtime,$withpeople],0);    // 回activity頁
-        if ($withpeople!=0 or $withpeople!=1)                                                   // 如果攜伴人數輸入錯誤
-            $this->view("activity",[$anum,$aname,$maxpeople,$starttime,$endtime,$withpeople],1);    // 回activity頁
-        else                                                                                    // 輸入正確
+        if ($withpeople==0 or $withpeople==1)                                                   // 如果攜伴人數輸入錯誤                                                                                               // 輸入正確
         {
             $addact=$this->model("sqlcommand");
-        	$addact->addact($anum,$aname,$maxpeople,$starttime,$endtime,$withpeople);           // 活動寫進資料庫
-            header("location:/Exercise/index");                                                 // 回首頁
+        	$addact->addact($anum,$aname,$maxpeople,$starttime,$endtime,$withpeople);               // 活動寫進資料庫
+            header("location:/Exercise/index");                                                     // 回首頁
         }
+        else                                                                                    // 輸入正確
+            $this->view("activity",[$anum,$aname,$maxpeople,$starttime,$endtime,$withpeople],1);    // 回activity頁
     }
     
     //  新增人員

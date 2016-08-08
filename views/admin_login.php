@@ -47,7 +47,7 @@
         <input type="text" placeholder="AdminName" name="txtUserName" required>
         <input type="password"  placeholder="AdminPassword" name="txtPassword"  required>
         <button class="btn btn-primary" name="reset" type="reset">Clear</button>&nbsp;
-        &nbsp;<button class="btn btn-primary" name="signup" type="submit">Login</button> 
+        &nbsp;<button class="btn btn-primary" type="submit">Login</button> 
       </form>
     </div>
   </div>

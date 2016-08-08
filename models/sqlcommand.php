@@ -73,7 +73,7 @@ class sqlcommand extends connect_db{
     	$result=$this->db->query($cmd);
     	$row=$result->fetch();
         
-        return $row['with'];        
+        return [$row['with'],$row['maxpeople'],$row['numpeople']];        
     }
     
     // 判斷是否有權利參加
@@ -86,6 +86,8 @@ class sqlcommand extends connect_db{
         return $num;         
     }
 
+
+    
     // 活動報名
     function joinact($actname,$enum,$peoplenum){
         $cmd="SELECT * FROM `addactivity`   
@@ -99,11 +101,26 @@ class sqlcommand extends connect_db{
     	    return ["超出人數上限",$row['maxpeople'],$row['numpeople'],$row['with']];
     	else
     	{
+    	    //$this -> db ->beginTransaction();
+    	    
     	    $cmd1="UPDATE `addactivity` 
     	           SET `numpeople`='$total'  
                    WHERE `act_name` ='$actname'";
     	    $this->db->query($cmd1);
+    	
+    	    //$this -> db ->commit();
     	}
+    }
+    
+    
+    function showp($actname){
+        $cmd="SELECT * FROM `addactivity`   
+              WHERE `act_name` ='$actname'";
+    	$result=$this->db->query($cmd);
+    	$row=$result->fetch();
+    	
+    	return [$row['maxpeople'],$row['numpeople'],$row['with']];
+        
     }
     
 }

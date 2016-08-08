@@ -15,6 +15,25 @@
 <link rel="shortcut icon" href="/Exercise/views/images/favicon.ico" type="image/x-icon">
 <link rel="icon" href="/Exercise/views/images/favicon.ico" type="image/x-icon">
 <link rel="stylesheet" href="/Exercise/views/assets/style.css">
+<script type="text/javascript" src="jquery.min.js">
+// $(document).ready(function(){
+  
+//   $("#nowpeople").click(
+//     function(){
+//       $.get('/Exercise/employee/add
+//     }
+    
+    
+//     );
+//   // setTimeout(nowpeople, 10);
+// }
+    
+  
+  
+  
+});
+
+</script>
 </head>
 
 
@@ -52,20 +71,26 @@
             <input type="text" placeholder="攜伴人數" name="Withpeople" required>
           <?php endif;?>
           
-          <button class="btn btn-primary" name="login" type="submit">報名參加</button> 
+          <button class="btn btn-primary" type="submit">報名參加</button> 
+          
         </form>
-        
+        <form method="post" action="/Exercise/employee/add?actname=<?php echo $data?>">
+          <button type="submit">show</button> 
+        </form>
       </div>
     </div>
     
     <!-- 顯示輸入人數超過上限 -->
     <?php if($data2[0]!=""):?>
       <h4 class="text-center  wowload fadeInUp"><?php echo $data2[0]?></h4>
-      <h4 class="text-center  wowload fadeInUp">(人數上限:<?php echo $data2[1]?>，現在報名人數:<?php echo $data2[2]?>)</h4>
     <?php endif;?>
     
+    <!-- 顯示現階段人數 -->
+    <h4 class="text-center  wowload fadeInUp" id="nowpeople">(人數上限:<?php echo $data2[1]?>，現在報名人數:<?php echo $data2[2]?>)</h4>
+    
+    <!-- 顯示無權參加活動 -->
     <?php if($data4!=""):?>
-    <h4 class="text-center  wowload fadeInUp"><?php echo $data4?></h4>
+      <h4 class="text-center  wowload fadeInUp"><?php echo $data4?></h4>
     <?php endif;?>
     
   </div>

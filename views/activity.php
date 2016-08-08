@@ -53,7 +53,7 @@
           <input type="text" placeholder="開始時間(年/月/日)" name="starttime" required>
           <input type="text" placeholder="結束時間(年/月/日)" name="endtime" required>
           <input type="text" placeholder="可否攜伴(可：1，不可：0)" name="withpeople" required>
-          <button class="btn btn-primary" name="signup" type="submit">Add</button> 
+          <button class="btn btn-primary" type="submit">Add</button> 
         </form>
         
         <!-- 時間輸入有錯誤 -->
@@ -65,7 +65,7 @@
           <input type="text" placeholder="開始時間(年/月/日)" name="starttime" value="<?php echo $data[3]?>">
           <input type="text" placeholder="結束時間(年/月/日)" name="endtime" value="<?php echo $data[4]?>">
           <input type="text" placeholder="可否攜伴(可：1，不可：0)" name="withpeople" value="<?php echo $data[5]?>">
-          <button class="btn btn-primary" name="signup" type="submit">Add</button> 
+          <button class="btn btn-primary" type="submit">Add</button> 
         </form>
         <?php endif;?>
         
