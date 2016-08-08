@@ -31,7 +31,7 @@
   
   
   
-});
+// });
 
 </script>
 </head>
@@ -74,9 +74,10 @@
           <button class="btn btn-primary" type="submit">報名參加</button> 
           
         </form>
-        <form method="post" action="/Exercise/employee/add?actname=<?php echo $data?>">
+        <form method="post" action="/Exercise/employee/show?actname=<?php echo $data?>">
           <button type="submit">show</button> 
         </form>
+        
       </div>
     </div>
     

@@ -66,7 +66,7 @@ class sqlcommand extends connect_db{
     
 
 //employee
-    // 判斷是否可攜伴
+    // 判斷是否可攜伴，顯示現在人數
     function with($actname){
         $cmd="SELECT * FROM `addactivity`   
               WHERE `act_name` ='$actname'";
@@ -85,8 +85,6 @@ class sqlcommand extends connect_db{
         $num = $result->rowCount();
         return $num;         
     }
-
-
     
     // 活動報名
     function joinact($actname,$enum,$peoplenum){
@@ -111,18 +109,7 @@ class sqlcommand extends connect_db{
     	    //$this -> db ->commit();
     	}
     }
-    
-    
-    function showp($actname){
-        $cmd="SELECT * FROM `addactivity`   
-              WHERE `act_name` ='$actname'";
-    	$result=$this->db->query($cmd);
-    	$row=$result->fetch();
-    	
-    	return [$row['maxpeople'],$row['numpeople'],$row['with']];
-        
-    }
-    
+
 }
 
 ?>
